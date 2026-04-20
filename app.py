@@ -11,3 +11,5 @@ def home():
 @app.route("/chill") 
 def chill():
     return "this is just a  page" 
+
+import user_controller

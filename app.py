@@ -12,4 +12,4 @@ def home():
 def chill():
     return "this is just a  page" 
 
-from controller import product_controller,user_controller
+from controller import *

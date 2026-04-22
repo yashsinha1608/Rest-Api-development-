@@ -17,10 +17,10 @@ class user_model():
         else: 
             return "no data found"  
         
-def user_addone_model(self, data):
-    try:
-        self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{data['name']}','{data['email']}','{data['phone']}','{data['role']}','{data['password']}')")
-        self.con.commit()  # ← add this line
-        return "user added successfully"
-    except Exception as e:
-        return str(e)
+    def user_addone_model(self, data):   # ← must be indented inside class!
+        try:
+            self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{data['name']}','{data['email']}','{data['phone']}','{data['role']}','{data['password']}')")
+            self.con.commit()
+            return "user added successfully"
+        except Exception as e:
+            return str(e)

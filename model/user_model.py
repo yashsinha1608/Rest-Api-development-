@@ -4,7 +4,7 @@ class user_model():
     def __init__(self):  #constructor for connection establishment 
         try:
             self.con=mysql.connector.connect(host="localhost",user="root",password="",database="flask_tutorial") #connect btw pyhon and mysql 
-            self.cur=self.con.cursor(dictionary=True) 
+            self.cur=self.con.cursor(dictionary=True,buffered=True) 
             print("succesful")       
         except: 
             print("some error")
@@ -16,4 +16,11 @@ class user_model():
             return json.dumps(result) 
         else: 
             return "no data found"  
-       
+        
+def user_addone_model(self, data):
+    try:
+        self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{data['name']}','{data['email']}','{data['phone']}','{data['role']}','{data['password']}')")
+        self.con.commit()  # ← add this line
+        return "user added successfully"
+    except Exception as e:
+        return str(e)

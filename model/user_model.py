@@ -4,6 +4,7 @@ class user_model():
     def __init__(self):  #constructor for connection establishment 
         try:
             self.con=mysql.connector.connect(host="localhost",user="root",password="",database="flask_tutorial") #connect btw pyhon and mysql 
+            self.con.autocommit=True
             self.cur=self.con.cursor(dictionary=True,buffered=True) 
             print("succesful")       
         except: 

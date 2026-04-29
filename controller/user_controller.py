@@ -11,3 +11,8 @@ def user_getall_controller():
 def user_addone_controller():
     #request.form   #all the data sent through postman is stored in this variable
     return obj.user_addone_model(request.form)   
+
+@app.route("/user/update",methods=["PUT"]) 
+def user_update_controller():
+    #request.form   #all the data sent through postman is stored in this variable
+    return obj.user_update_model(request.form)

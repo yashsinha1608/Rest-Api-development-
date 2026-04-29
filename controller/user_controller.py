@@ -14,5 +14,11 @@ def user_addone_controller():
 
 @app.route("/user/update",methods=["PUT"]) 
 def user_update_controller():
-    #request.form   #all the data sent through postman is stored in this variable
+   # print(request.form)  # ← add this line
     return obj.user_update_model(request.form)
+
+
+@app.route("/user/delete/<id>",methods=["DELETE"]) 
+def user_delete_controller(id):
+   
+    return obj.user_delete_model(id)

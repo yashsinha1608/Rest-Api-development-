@@ -20,18 +20,26 @@ class user_model():
             return "no data found"
 
     def user_addone_model(self, data):
-        self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{data['name']}','{data['email']}','{data['phone']}','{data['role']}','{data['password']}')")
-        return "user added successfully"
-
-    def user_update_model(self, data):
         name = data['name']
         email = data['email']
         phone = data['phone']
         role = data['role']
         password = data['password']
-        id = data['id']
-        self.cur.execute(f"UPDATE users SET name='{name}',email='{email}',phone='{phone}',role='{role}',password='{password}' WHERE id={id}")
-        if self.cur.rowcount > 0:
-            return "user updated successfully"
-        else:
-            return "nothing to update"
+        self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{name}','{email}','{phone}','{role}','{password}')")
+        return "user added successfully"
+
+    def user_update_model(self, data):   # ← must be indented inside class!
+            self.cur.execute(f"UPDATE users SET name='{data['name']}',email='{data['email']}',phone='{data['phone']}',role='{data['role']}',password='{data['password']}' WHERE id={data['id']} ")
+         #   self.con.commit()
+            if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
+                return "user updated successfully"
+            else:
+                return "nothing to update"
+
+    def user_delete_model(self, id):   # ← must be indented inside class!
+            self.cur.execute(f"DELETE FROM users WHERE id={id}")
+         #   self.con.commit()
+            if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
+                return "user deleted successfully"
+            else:
+                return "nothing to delete" 

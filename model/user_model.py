@@ -45,3 +45,8 @@ class user_model():
                 return make_response({"message":"user deleted successfully"},200)
             else:
                 return make_response({"message":"nothing to delete"},204)
+            
+
+
+    def user_patch_model(self,data,id):
+         return "This is user patch model"

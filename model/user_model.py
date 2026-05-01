@@ -32,7 +32,6 @@ class user_model():
 
     def user_update_model(self, data):   # ← must be indented inside class!
             self.cur.execute(f"UPDATE users SET name='{data['name']}',email='{data['email']}',phone='{data['phone']}',role='{data['role']}',password='{data['password']}' WHERE id={data['id']} ")
-         #   self.con.commit()
             if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
                 return make_response({"message":"user updated successfully"},201)
             else:
@@ -49,11 +48,17 @@ class user_model():
 
 
     def user_patch_model(self,data,id):
-         qry="UPDATE users SET "
-         for key in data:
+        qry="UPDATE users SET "
+        for key in data:
               qry=qry+ f"{key}={data[key]},"
 
-         qry=qry[:-1]+f" Where id={id}"
+        qry=qry[:-1]+f" Where id={id}"
+        self.cur.execute(qry )
+        if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
+               return make_response({"message":"user updated successfully"},201)
+        else:
+            return make_response({"message":"nothing to update"},202)
+
               #print(qry)
             #  print(f"{key}={data[key]}")
-         return qry
+        return qry

@@ -50,7 +50,7 @@ class user_model():
     def user_patch_model(self,data,id):
         qry="UPDATE users SET "
         for key in data:
-              qry=qry+ f"{key}={data[key]},"
+              qry=qry+ f"{key}='{data[key]}',"
 
         qry=qry[:-1]+f" Where id={id}"
         self.cur.execute(qry )

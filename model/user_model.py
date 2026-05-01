@@ -49,7 +49,7 @@ class user_model():
 
 
     def user_patch_model(self,data,id):
-         
+         qry="UPDATE users SET "
+         print(data)
 
-         
          return "This is user patch model"

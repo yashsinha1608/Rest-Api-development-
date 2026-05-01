@@ -52,6 +52,7 @@ class user_model():
          qry="UPDATE users SET "
          for key in data:
               qry=qry+ f"{key}={data[key]}, "
-              print(qry)
+              qry+=f"Where id={id}"
+              #print(qry)
             #  print(f"{key}={data[key]}")
-         return "This is user patch model"
+         return qry

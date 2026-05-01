@@ -50,6 +50,6 @@ class user_model():
 
     def user_patch_model(self,data,id):
          qry="UPDATE users SET "
-         print(data)
-
+         for key in data:
+              print(key)
          return "This is user patch model"

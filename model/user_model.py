@@ -57,7 +57,7 @@ class user_model():
         if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
                return make_response({"message":"user updated successfully"},201)
         else:
-            return make_response({"message":"nothing to yoyoy update"},202)
+            return make_response({"message":"nothing to update"},202)
 
               #print(qry)
             #  print(f"{key}={data[key]}")

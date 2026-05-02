@@ -69,9 +69,9 @@ class user_model():
         start=(limit*page)-limit
         qry=f"SELECT * FROM users LIMIT {start},{limit}"
         self.cur.execute(qry)
-        result = self.cur.fetchall()
+        result = self.cur.fetchall()  
         if len(result) > 0:
-            res =make_response({"payload":result},200)
+            res =make_response({"payload":result,"page_no":page,"limit"   :limit},200)
             res.headers['Access-Control-Allow-Origin']="*"
             return res
         else:

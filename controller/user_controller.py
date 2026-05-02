@@ -2,6 +2,7 @@ from app import app
 from flask import request 
 from model.user_model import user_model #importing user_model class from user_model.py file
 obj=user_model()
+from datetime import datetime 
 
 @app.route("/user/getall") 
 def user_getall_controller():
@@ -35,6 +36,8 @@ def user_pgination_controller(limit,page):
     return obj.user_pagination_model(limit,page)
 
 
-@app.route("/user/<uid>/upload/avatar")
+@app.route("/user/<uid>/upload/avatar",methods=["PUT"])
 def user_upload_avatar_controller(uid):
-    return "THIS_IS_AVARAT"
+    file=request.files['avatar'] #request.files['avatar'] = one specific item from the bag request.files = the whole bag
+    #file.save(f"uploads/file.filename")
+    return str(datetime.now().timestamp()).replace(".", "")

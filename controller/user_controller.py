@@ -33,3 +33,8 @@ def user_patch_controller(id):
 def user_pgination_controller(limit,page):
    
     return obj.user_pagination_model(limit,page)
+
+
+@app.route("/user/<uid>/upload/avatar")
+def user_upload_avatar_controller(uid):
+    return "THIS_IS_AVARAT"

@@ -39,5 +39,9 @@ def user_pgination_controller(limit,page):
 @app.route("/user/<uid>/upload/avatar",methods=["PUT"])
 def user_upload_avatar_controller(uid):
     file=request.files['avatar'] #request.files['avatar'] = one specific item from the bag request.files = the whole bag
-    #file.save(f"uploads/file.filename")
-    return str(datetime.now().timestamp()).replace(".", "")
+    uniquefilename=str(datetime.now().timestamp()).replace(".", "")
+    filenamesplit=file.filename.split(".")
+    ext=filenamesplit[len(filenamesplit)-1] 
+    finalfilepath=f"uploads/{uniquefilename}.{ext}"
+    file.save(finalfilepath)
+    return obj.user_upload_avatar_model(uid,finalfilepath)

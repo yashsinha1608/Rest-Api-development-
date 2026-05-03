@@ -1,8 +1,9 @@
 from app import app
-from flask import request 
+from flask import request,send_file
 from model.user_model import user_model #importing user_model class from user_model.py file
 obj=user_model()
 from datetime import datetime 
+ 
 
 @app.route("/user/getall") 
 def user_getall_controller():
@@ -45,3 +46,9 @@ def user_upload_avatar_controller(uid):
     finalfilepath=f"uploads/{uniquefilename}.{ext}"
     file.save(finalfilepath)
     return obj.user_upload_avatar_model(uid,finalfilepath)
+
+#yeh thoda deakhna hai utna nahi aaya samajh theory part
+@app.route("/uploads/<filename>")
+def user_getavatar_controller(filename):
+     
+     return send_file(f"uploads/{filename }")    

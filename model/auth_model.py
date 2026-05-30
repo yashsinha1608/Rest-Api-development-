@@ -3,12 +3,13 @@ from functools import wraps
 import json
 from flask import make_response,request
 import jwt
+from config.config import dbconfig
 import re
 class auth_model():
 
     def __init__(self):
         try:
-            self.con = mysql.connector.connect(host="localhost", user="root", password="", database="flask_tutorial")
+            self.con = mysql.connector.connect(host=dbconfig['hostname'], user=dbconfig['username'], password=dbconfig['password'], database=dbconfig['database'])
             self.con.autocommit = True
             self.cur = self.con.cursor(dictionary=True, buffered=True)
             print("successful")

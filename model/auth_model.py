@@ -15,10 +15,12 @@ class auth_model():
         except:
             print("some error")
 
-    def token_auth(self,endpoint):
+    def token_auth(self,endpoint=""):
         def inner1(func):
             @wraps(func) 
             def inner2(*args):
+                endpoint=request.url_rule 
+              # print(endpoint)
                 authorization=request.headers.get("Authorization")
                 if re.match("Bearer *([^ ]+) *$",authorization, flags=0):
                     token=authorization.split(" ")[1]

@@ -1,4 +1,5 @@
 import mysql.connector
+from functools import wraps
 import json
 from flask import make_response,request
 import jwt
@@ -16,6 +17,7 @@ class auth_model():
 
     def token_auth(self,endpoint):
         def inner1(func):
+            @wraps(func) 
             def inner2(*args):
                 authorization=request.headers.get("Authorization")
                 if re.match("Bearer *([^ ]+) *$",authorization, flags=0):

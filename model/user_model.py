@@ -29,16 +29,16 @@ class user_model():
         name = data['name']
         email = data['email']
         phone = data['phone']
-        role = data['role']
+        role_id = data['role_id']
         password = data['password']
-        self.cur.execute(f"INSERT INTO users(name,email,phone,role,password) VALUES('{name}','{email}','{phone}','{role}','{password}')")
+        self.cur.execute(f"INSERT INTO users(name,email,phone,role_id,password) VALUES('{name}','{email}','{phone}','{role}','{password}')")
         return make_response({"message":"user added"},201)
 
     def user_update_model(self, data):   # ← must be indented inside class!
-            self.cur.execute(f"UPDATE users SET name='{data['name']}',email='{data['email']}',phone='{data['phone']}',role='{data['role']}',password='{data['password']}' WHERE id={data['id']} ")
+            self.cur.execute(f"UPDATE users SET name='{data['name']}',email='{data['email']}',phone='{data['phone']}',role_id='{data['role_id']}',password='{data['password']}' WHERE id={data['id']} ")
             if self.cur.rowcount>0: #if rowcount=0 ie same data is given 
                 return make_response({"message":"user updated successfully"},201)
-            else:
+            else: 
                 return make_response({"message":"nothing to update"},202)
 
     def user_delete_model(self, id):   # ← must be indented inside class!

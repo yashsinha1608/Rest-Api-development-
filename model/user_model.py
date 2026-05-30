@@ -91,7 +91,7 @@ class user_model():
          self.cur.execute(f"SELECT id,name,email,phone,avatar,role_id FROM users WHERE email='{data['email']}'and password='{data['password']}'")
          result=self.cur.fetchall()
          userdata=result[0]
-         exp_time=datetime.now()+ timedelta(minutes=15)
+         exp_time=datetime.now()+ timedelta(minutes=40)
          exp_epoch_time=int(exp_time.timestamp())
          payload={
               "payload":userdata,
